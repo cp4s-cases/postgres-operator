@@ -20,7 +20,7 @@ openssl req -new -nodes -text -out $CERTS_DIR/server.csr -keyout $CERTS_DIR/serv
 openssl x509 -req -in $CERTS_DIR/server.csr -text -days 365 -CA $CERTS_DIR/root.crt -CAkey $CERTS_DIR/root.key -CAcreateserial -out $CERTS_DIR/server.crt
 
 # make crt available to cases application to establish trust
-cat <<EOF | kubectl apply -f -
+cat <<EOF | oc apply -f -
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -30,7 +30,7 @@ binaryData:
 EOF
 
 # create configmap required by postgres operator
-kubectl create configmap isc-cases-pgcluster-configmap \
+oc create configmap isc-cases-pgcluster-configmap \
     --from-file=$CERTS_DIR/server.crt \
     --from-file=$CERTS_DIR/server.key \
     --from-file=$DIR/../conf/postgres/pg_hba.conf \
