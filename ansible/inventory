@@ -54,7 +54,7 @@ pgo_image_prefix='quay.io/ibmcp4s'
 pgo_image_tag='rhel7-4.0.1'
 
 # secret to use when pulling images from docker repository
-image_pull_secret='ccp-pgo-repo-secret'
+image_pull_secret='ibmcp4s-pull-secret'
 
 # PGO Client Install
 pgo_client_install='true'
